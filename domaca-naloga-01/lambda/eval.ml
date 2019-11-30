@@ -91,8 +91,6 @@ let is_value = function
 let rec step = function
   | S.Var _ | S.Int _ | S.Bool _ | S.Lambda _ | S.RecLambda _ -> failwith "Expected a non-terminal expression"
   | S.Nil -> failwith "Expected a non-terminal expression"
-  | S.Pair (v1, v2) when (is_value v1 && is_value v2) -> failwith "Expected a non-terminal expression"
-  | S.Cons (v1, v2) when (is_value v1 && is_value v2) -> failwith "Expected a non-terminal expression"
   | S.Plus (S.Int n1, S.Int n2) -> S.Int (n1 + n2)
   | S.Plus (S.Int n1, e2) -> S.Plus (S.Int n1, step e2)
   | S.Plus (e1, e2) -> S.Plus (step e1, e2)
